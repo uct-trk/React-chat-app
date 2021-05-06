@@ -1,12 +1,16 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { Form , Segment, Button, Grid, Message } from 'semantic-ui-react'
 import styles from './login.module.css'
+import { ErrorMessage } from '@hookform/error-message'
+
+import { useForm } from "react-hook-form";
 
 const Login = () => {
+    const {register, errors, handleSubmit, setValue} = useForm()
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
+    const onSubmit = (data, e) => {
+       console.log(data)
     }
 
 
@@ -25,10 +29,34 @@ const Login = () => {
 
                 <Form size="large" 
                     className={styles.form}
-                    onSubmit={handleSubmit}>
+                    onSubmit={handleSubmit(onSubmit)}>
                     <Segment>
-                        <Form.Input fluid icon="mail" iconPosition="left" name="email" placeholder="EMAIL ADDRESS" type="email"/>
-                        <Form.Input fluid icon="lock" iconPosition="left" name="password" placeholder="PASSWORD" type="password"/>
+                        <Form.Input 
+                            fluid icon="mail" 
+                            iconPosition="left" 
+                            name="email" 
+                            placeholder="EMAIL ADDRESS" 
+                            type="email"
+                            required
+                            {...register("email", { required: "This is required"})}
+                            onChange={(event, {name, value}) => {
+                                setValue(name, value)}}/>
+                                
+                                
+        
+                               
+                        <Form.Input 
+                            fluid icon="lock" 
+                            iconPosition="left" 
+                            name="password" 
+                            placeholder="PASSWORD" 
+                            required
+                            type="password"
+                            {...register("password", {minLength: 6, required: true})}
+                            onChange={(event, {name, value}) => {
+                                setValue(name, value)
+                            }}
+                            />
                         <Button color="instagram" fluid size="large">Login</Button>
                     </Segment>
                 </Form>
