@@ -1,0 +1,14 @@
+.container{
+    height: 100vh;
+    background: url('../images/first.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.formHeader{
+    font-size: 52px;
+    font-family: 'Pacifico', cursive;
+    color: #191654;
+    margin-bottom: 10px;
+}
+
