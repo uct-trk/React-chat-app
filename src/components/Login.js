@@ -1,17 +1,39 @@
-import React, { useEffect } from 'react'
+import React, {useState} from 'react'
 import { Link } from 'react-router-dom'
 import { Form , Segment, Button, Grid, Message } from 'semantic-ui-react'
 import styles from './login.module.css'
-import { ErrorMessage } from '@hookform/error-message'
+import {useFirebase} from 'react-redux-firebase'
 
 import { useForm } from "react-hook-form";
 
 const Login = () => {
+    const firebase = useFirebase()
     const {register, errors, handleSubmit, setValue} = useForm()
 
-    const onSubmit = (data, e) => {
-       console.log(data)
+    const [fbErrors, setFbErrors] = useState([])
+    const [submitting, setSubmitting] = useState(false)
+
+    const onSubmit = ({email, password}, e) => {
+       setSubmitting(true)
+       setFbErrors([])
+
+       firebase.login({
+           email, password
+       })
+       .then((data) => {
+           console.log(data)
+       })
+       .catch((error) => {
+           setFbErrors([{ message: error.message}])
+       })
+       .finally(() => {
+           setSubmitting(false)
+       })
     }
+
+    const displayErrors = () => fbErrors.map((error, index) => 
+    <p key={index}>{error.message}</p>
+)
 
 
     return (
@@ -57,9 +79,14 @@ const Login = () => {
                                 setValue(name, value)
                             }}
                             />
-                        <Button color="instagram" fluid size="large">Login</Button>
+                        <Button disabled={submitting} color="instagram" fluid size="large">Login</Button>
                     </Segment>
                 </Form>
+                {
+                    fbErrors.length > 0 && (
+                        <Message error>{displayErrors()}</Message>
+                    )
+                }
 
                 <Message>Don't you have any account? <Link to="/signup"><Button>Click and Sign Up Now!</Button></Link></Message>
             </Grid.Column>

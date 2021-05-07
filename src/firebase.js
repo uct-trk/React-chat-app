@@ -3,17 +3,19 @@ import 'firebase/auth'
 import 'firebase/database'
 import 'firebase/storage'
 
-const firebaseConfig = {
-    apiKey: "AIzaSyDq2InHeRIja1xJ8rwPwlINHlDU7GZshTs",
-    authDomain: "chat-app-59f8e.firebaseapp.com",
-    projectId: "chat-app-59f8e",
-    storageBucket: "chat-app-59f8e.appspot.com",
-    messagingSenderId: "115418630345",
-    appId: "1:115418630345:web:e9d0cabc3aacce5c3ce518",
-    measurementId: "G-18QLJKLY4Z"
-  };
 
+const firebaseConfig = {
+    apiKey: "AIzaSyAjCYiBilzqpXncBIuug1st7ZKuPPZYbkE",
+    authDomain: "uct-chat-app.firebaseapp.com",
+    projectId: "uct-chat-app",
+    storageBucket: "uct-chat-app.appspot.com",
+    messagingSenderId: "880669379862",
+    appId: "1:880669379862:web:89dddb9b106af91df0d437",
+    measurementId: "G-LSDZL1NWLQ"
+  };
 
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
- export default firebase
+ 
+
+  export default firebase
