@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import { useFirebase } from 'react-redux-firebase'
 import { Form, Segment, Button, Grid, Message } from 'semantic-ui-react'
 import styles from './signup.module.css'
@@ -8,6 +8,7 @@ import styles from './signup.module.css'
 const SignUp = () => {
     // firebase reducerini import ediyoruz
     const firebase = useFirebase()
+    const history = useHistory()
 
     const [fbErrors, setFbErrors] = useState([])
     const [submitting, setSubmitting] = useState(false)

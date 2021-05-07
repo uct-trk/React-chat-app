@@ -3,7 +3,7 @@ import {Dimmer, Loader, Image, Segment, Icon} from 'semantic-ui-react'
 
 const FallBack = () => {
     return (
-       <Segment>
+       <Segment style={{height: "100vh"}}>
            <Dimmer active>
                 <Loader/>
            </Dimmer>

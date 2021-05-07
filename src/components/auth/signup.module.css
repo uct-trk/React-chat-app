@@ -1,6 +1,6 @@
 .container{
     height: 100vh;
-    background: url('../images/first.png');
+    background: url('../../images/undraw_Traveling_re_weve.svg');
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -8,7 +8,7 @@
 .formHeader{
     font-size: 52px;
     font-family: 'Pacifico', cursive;
-    color: #191654;
+    color: #191654;  /* fallback for old browsers */
     margin-bottom: 10px;
-}
 
+}
